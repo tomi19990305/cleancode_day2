@@ -22,15 +22,15 @@ public class FileReader {
     private String findSmallest(Stream<String> lines) {
         return lines
                 .skip(HEADER_LINES_NO)
-               // .filter(FileReader::dataLine)
-                .map(DataItem::of)
+                .filter(FileReader::dataLine)
+                .map(DataItem::bindValues)
                 .min(Comparator.comparing(DataItem::diff))
                 .orElseThrow(FileReader::throwNoDataFound)
                 .getTeamName();
     }
 
     public static boolean dataLine(String s) {
-        return s.matches("[0-9]+");
+        return s.matches(".*[a-zA-Z].*");
     }
 
     public static IllegalArgumentException throwNoDataFound() {

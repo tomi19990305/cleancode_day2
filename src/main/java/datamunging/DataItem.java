@@ -8,20 +8,19 @@ public class DataItem {
 
     private int A;
 
-    public static DataItem of(String line) {
-        System.out.println(line);
+    public static DataItem bindValues(String line) {
         DataItem dataItem = new DataItem();
         String[] cols = line.split("\\s+");
 
-        dataItem.teamName = cols[1];
-        dataItem.F = Integer.parseInt(cols[6]);
-        dataItem.A = Integer.parseInt(cols[8]);
+        dataItem.teamName = cols[2];
+        dataItem.F = Integer.parseInt(cols[7]);
+        dataItem.A = Integer.parseInt(cols[9]);
 
         return dataItem;
     }
 
     public int diff() {
-        return F - A;
+        return Math.abs(F - A);
     }
 
     public String getTeamName() {
