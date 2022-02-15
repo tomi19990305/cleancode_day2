@@ -10,7 +10,7 @@ public class FileReaderTest {
 
     @Test
     void testFileReader() {
-        int result = new FileReader().findSmallestTemperatureSpread(Path.of("src/main/resources/datamunging/weather.dat"));
-        assertEquals(14, result);
+        String result = new FileReader().findSmallestGoalDifference(Path.of("src/main/resources/datamunging/football.dat"));
+        //assertEquals(14, result);
     }
 }

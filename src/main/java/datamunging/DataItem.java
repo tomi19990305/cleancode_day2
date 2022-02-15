@@ -2,27 +2,30 @@ package datamunging;
 
 public class DataItem {
 
-    private int day;
+    private String teamName;
 
-    private int min;
+    private int F;
 
-    private int max;
+    private int A;
 
     public static DataItem of(String line) {
+        System.out.println(line);
         DataItem dataItem = new DataItem();
+        String[] cols = line.split("\\s+");
 
-        dataItem.day = Integer.parseInt(line.substring(2, 4).trim());
-        dataItem.max = Integer.parseInt(line.substring(6, 8).trim());
-        dataItem.min = Integer.parseInt(line.substring(12, 14).trim());
+        dataItem.teamName = cols[1];
+        dataItem.F = Integer.parseInt(cols[6]);
+        dataItem.A = Integer.parseInt(cols[8]);
+
         return dataItem;
     }
 
     public int diff() {
-        return max - min;
+        return F - A;
     }
 
-    public int getDay() {
-        return day;
+    public String getTeamName() {
+        return teamName;
     }
 
 }

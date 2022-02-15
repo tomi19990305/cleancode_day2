@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 
 public class FileReader {
 
-    private static final int HEADER_LINES_NO = 2;
+    private static final int HEADER_LINES_NO = 1;
 
-    public int findSmallestTemperatureSpread(Path path) {
+    public String findSmallestGoalDifference(Path path) {
         try (var lines = Files.lines(path)) {
             return findSmallest(lines);
         }
@@ -19,18 +19,18 @@ public class FileReader {
         }
     }
 
-    private int findSmallest(Stream<String> lines) {
+    private String findSmallest(Stream<String> lines) {
         return lines
                 .skip(HEADER_LINES_NO)
-                .filter(FileReader::dataLine)
+               // .filter(FileReader::dataLine)
                 .map(DataItem::of)
                 .min(Comparator.comparing(DataItem::diff))
                 .orElseThrow(FileReader::throwNoDataFound)
-                .getDay();
+                .getTeamName();
     }
 
     public static boolean dataLine(String s) {
-        return !s.contains("mo");
+        return s.matches("[0-9]+");
     }
 
     public static IllegalArgumentException throwNoDataFound() {
